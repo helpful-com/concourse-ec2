@@ -1,0 +1,11 @@
+[Unit]
+Description=Concourse CI Bootstrap Fly process
+After=concourse-worker.service
+
+[Service]
+User=root
+Restart=on-failure
+ExecStart=/opt/concourse/bin/fly-bootstrap
+
+[Install]
+WantedBy=multi-user.target

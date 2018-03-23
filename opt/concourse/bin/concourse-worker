@@ -1,0 +1,17 @@
+#!/bin/bash
+
+BASE_DIR="/opt/concourse"
+
+if mount | grep ' /mnt ' > /dev/null; then
+  WORK_DIR="/mnt/concourse/worker"
+else
+  WORK_DIR="$BASE_DIR/worker"
+fi
+
+mkdir -p $WORK_DIR
+
+$BASE_DIR/bin/concourse worker \
+    --work-dir $WORK_DIR \
+    --tsa-host 127.0.0.1 \
+    --tsa-public-key $BASE_DIR/etc/host_key.pub \
+    --tsa-worker-private-key $BASE_DIR/etc/worker_key > /dev/null

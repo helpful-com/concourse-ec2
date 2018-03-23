@@ -1,0 +1,11 @@
+[Unit]
+Description=Concourse CI web process (ATC and TSA)
+#After=postgresql.service
+
+[Service]
+User=concourse
+Restart=on-failure
+ExecStart=/opt/concourse/bin/concourse-web
+
+[Install]
+WantedBy=multi-user.target

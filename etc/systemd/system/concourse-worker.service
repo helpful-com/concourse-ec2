@@ -1,0 +1,11 @@
+[Unit]
+Description=Concourse CI worker process
+After=concourse-web.service
+
+[Service]
+User=root
+Restart=on-failure
+ExecStart=/opt/concourse/bin/concourse-worker
+
+[Install]
+WantedBy=multi-user.target
